@@ -1,0 +1,20 @@
+body{ background: #CAD9E6 url('../images/bg.png'); margin: 0; padding: 0; font-family: "arial", "verdana", sans-serif; font-size: 13px; font-size: 0.75em; }
+#header{ background: url('../images/header_bg.png'); height: 127px; }
+#header img{ margin-top: 30px; }
+.wrapper{ width: 1018px; margin: 0 auto; }
+#content{ background: #F8F8F8; padding: 25px; text-align: justify;}
+#content h1{ font-size: 1.3em; width: 100%; padding-bottom: 5px; padding-top: 0px; margin-top: 0px; border-bottom: 1px solid #CFCFCF; }
+
+.bigblock{ background: url('../images/big_block_bg.jpg'); background-repeat: repeat-y; width: 271px; float:right;  margin-left: 5px; margin-bottom: 5px;}
+.bigblock h2{ background: url('../images/big_block_h2_bg.jpg'); background-repeat: no-repeat; width: 271px; height: 34px; font-size: 1.2em; text-align: center; padding-top: 5px;}
+
+.block{ margin-left: 4px; width: 334px; height: 160px; background: #E0E0E0; float: left; }
+.blockcontent{ padding: 8px; color: #5B5B5B; }
+.block h2{ font-size: 1.1em; width: 100%; padding-bottom: 5px; padding-top: 0px; margin-top: 0px; border-bottom: 1px solid #BBBBBB; color: #5B5B5B; }
+
+#blocks{ background: #F8F8F8; padding-bottom: 4px; }
+#footer{ font-size: 0.9em; color: #333333; margin-top: 30px; }
+
+ul#ickle_primary_menu {float: right;width: 600px; margin:0;padding-top: 60px; padding-right: 25px; list-style: none;  display: inline; margin-bottom:0px;  }
+ul#ickle_primary_menu li{ display: inline; }
+ul#ickle_primary_menu li a{ text-decoration: none; color: #FFF; font-weight: bold; font-size: 1.2em; width: 112px; height: 27px;text-align: center; float: left; padding: 5px; padding-top: 5px !important; padding-left: 3px !important; }
