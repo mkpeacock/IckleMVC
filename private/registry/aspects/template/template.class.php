@@ -319,6 +319,10 @@ class Template {
      */
     public function parseOutput()
     {
+    	// "magic" tags
+    	$this->getPage()->addTag( 'Y', date('Y') );
+    	
+    	
 	    $this->replaceBits();
 	    $this->replaceTags( $this->page->getTags() );
 	    $this->replaceBits();
