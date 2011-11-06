@@ -44,6 +44,8 @@ class Bootstrap
 		$this->registry = new IckleRegistry( $defaultRegistryObjects );
 		$this->defaultRegistrySetup();
 		
+		$this->registry->getObject('template')->getPage()->addTag('site_url', $this->registry->getSetting('site_url') );
+		
 		if( ACCESS_POINT == 'BACK' )
 		{
 			$this->administrationDelegation();
@@ -53,6 +55,7 @@ class Bootstrap
 			$this->frontEndDelegation();
 		}
 		
+		$this->notifications();
 		$this->registry->getObject('template')->parseOutput();
 		print $this->registry->getObject('template')->getPage()->getContentToPrint();
 		
@@ -60,6 +63,7 @@ class Bootstrap
 	
 	private function frontEndDelegation()
 	{
+		
 		require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
 		$fc = new Frontcontroller( $this->registry );
 		$fc->process();
@@ -67,6 +71,7 @@ class Bootstrap
 	
 	private function administrationDelegation()
 	{
+		$this->registry->getObject('template')->getPage()->addTag('admin_folder', $this->registry->getSetting('admin_folder') );
 		$this->registry->storeSetting( $this->registry->getSetting('administration_view'), 'view' );
 		require_once( FRAMEWORK_PATH . 'controllers/administration/administration.controller.php' );
 		$fc = new AdministrationController( $this->registry );
@@ -89,6 +94,24 @@ class Bootstrap
 			{
 				$this->registry->storeSetting( $row['key'], $row['data'] );
 			}
+		}
+		
+		$this->registry->getObject('authentication')->authenticationCheck();
+	}
+	
+	private function notifications()
+	{
+		if( isset( $_SESSION['notification_message'] ) && is_array( $_SESSION['notification_message'] ) )
+		{
+			$this->registry->getObject('template')->addTemplateBit( 'notification_message', 'snippets/notification_message.tpl.php' );
+			$this->registry->getObject('template')->getPage()->addTag( 'message_type', $_SESSION['notification_message']['type'] );
+			$this->registry->getObject('template')->getPage()->addTag( 'message_heading', $_SESSION['notification_message']['heading'] );
+			$this->registry->getObject('template')->getPage()->addTag( 'message_text', $_SESSION['notification_message']['message'] );
+			unset( $_SESSION['notification_message'] );
+		}
+		else
+		{
+			$this->registry->getObject('template')->getPage()->addTag( 'notification_message', '' );
 		}
 	}
 	
