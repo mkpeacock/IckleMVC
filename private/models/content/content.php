@@ -3,7 +3,7 @@
  * Root content type
  * 
  * @author Michael Peacock
- * @copyright CentralApps Limited
+ * @copyright IckleMVC Project, CentralApps Limited
  */
 class Content {
 	
@@ -299,7 +299,7 @@ class Content {
 							 		LEFT JOIN 
 							 				users ua ON ( ua.ID=c.creator ) %s 
 							 WHERE %s v.ID=c.current_version_id 
-							 		AND ( SELECT COUNT(*) FROM content_scope_associations csa, scopes s, scopes_types st WHERE csa.content_id=c.ID AND s.ID=csa.scope_id AND st.ID=s.type AND ( s.reference=%d OR st.reference='global') AND st.reference='%s' ) 
+							 		AND ( SELECT COUNT(*) FROM content_scope_associations csa, scopes s, scopes_types st WHERE csa.content_id=c.ID AND s.ID=csa.scope_id AND st.ID=s.type AND ( s.reference=%d OR st.reference='global') AND st.reference='%s' ) > 0  
 							 		AND t.ID=c.type 
 							 		AND t.reference='%s' 
 							 		AND ( c.ID=%d OR ( c.path<>'' AND c.path='%s' ) OR ( 1=%d ) ) 

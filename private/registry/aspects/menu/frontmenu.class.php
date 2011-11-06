@@ -74,8 +74,7 @@ class Frontmenu {
 		$treeplanter->setSeeds( $this->pages );
 		$tree = $treeplanter->plant();
 		$treesurgeon->payloadAlter( $tree, array( 's_name' => 'name' ) );
-		echo '<pre>' . $tree . '</pre>';
-		exit();
+		//echo '<pre>' . print_r( $tree, true ) . '</pre>';
 		switch( $this->menuType )
 		{
 			case 'tree':

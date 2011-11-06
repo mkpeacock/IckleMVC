@@ -55,9 +55,7 @@ class TreeSurgeon {
 			}
 			$branch->setPayload( $newPayload );
 			//$tree->getBranch( $branch->getReference() )->setPayload( $newPayload );
-			echo 'a' . $branch->getReference();
 		}
-		echo 'b';
 	}
 	
 }
@@ -147,7 +145,6 @@ class Branch {
 	public function updateChildren( $children )
 	{
 		$this->children = $children;
-		echo get_class( $this->parent );
 		if( ! is_null( $this->parent ) && is_object( $this->parent ) && strtolower( get_class( $this->parent ) ) == 'branch' )
 		{
 			$this->parent->updateChildren( array_merge( $this->branches, $this->children ) );

@@ -325,6 +325,8 @@ class Template {
 	    $this->replaceTags( $this->page->getTags( 'postparse' ) );
 	    $this->parseTitle();
 	    $this->parseExtras();
+	    
+	    return $this;
     }
 }
 ?>
