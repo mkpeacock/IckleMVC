@@ -32,7 +32,7 @@ class User {
     {
     	$this->registry = $registry;
     	
-    	$sql = "SELECT u.username, u.email, u.active, u.joined, u.last_logged_in, u.banned, u.deleted, u.administrator 
+    	$sql = "SELECT u.ID, u.username, u.email, u.active, u.joined, u.last_logged_in, u.banned, u.deleted, u.administrator 
     			FROM users u 
     			WHERE 1=1 ";
     	if( $id > 0 )
@@ -43,11 +43,16 @@ class User {
     	{
     		$sql .= " AND u.username='{$username}' AND u.password_hash='" . $this->registry->getObject('authentication')->hashPassword( $password ) . "'";
     	}
+    	else
+    	{
+    		$sql .= " AND 1=2 ";
+    	}
     	$sql .= " LIMIT 1";
     	$this->registry->getObject('db')->executeQuery( $sql );
     	if( $this->registry->getObject('db')->getNumRows() > 0 )
     	{
     		$data = $this->registry->getObject('db')->getRows();
+    		$this->id = $data['ID'];
     		$this->valid = true;
     		$this->username = $data['username'];
     		$this->email = $data['email'];
@@ -59,6 +64,11 @@ class User {
     	{
     		$this->valid = false;
     	}
+    }
+    
+    public function isValid()
+    {
+    	return $this->valid;
     }
     
     public function isAdministrator()

@@ -44,10 +44,22 @@ class Authentication {
     	if( isset( $_POST ) && is_array( $_POST ) && count( $_POST ) > 0 && ( isset( $_POST['ickle_auth_user'] ) || isset( $_POST['ickle_auth_pass'] ) ) )
     	{
     		$this->user = new User( $this->registry, 0, ( isset( $_POST['ickle_auth_user'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_user'] ) : '' ), ( isset( $_POST['ickle_auth_pass'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_pass'] ) : '' ) );
+    		if( $this->user->isValid() )
+    		{
+    			$_SESSION['ickle_auth_userid'] = $this->user->getID();
+    			// notify: success
+    			$this->registry->notify( 'success', 'Success', 'You are now logged in');
+    			
+    		}
+    		else
+    		{
+    			// notify: error
+    			$this->registry->notify( 'error', 'Invalid credentials', 'Sorry, the details you supplied were not correct; please try again');
+    		}
     	} 
     	elseif( isset( $_SESSION['ickle_auth_userid'] ) && intval( $_SESSION['ickle_auth_userid'] ) > 0 )
     	{
-    		
+    		$this->user = new User( $this->registry, intval( $_SESSION['ickle_auth_userid'] ) );
     	}
     	else
     	{
