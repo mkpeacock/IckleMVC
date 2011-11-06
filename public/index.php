@@ -6,7 +6,7 @@
  */
 error_reporting( -1 );
 define('ACCESS_POINT', 'FRONT' );
-require_once('const.php');
+define( "PUBLIC_PATH", dirname( __FILE__ ) ."/" );
 require_once('../private/bootstrap.php');
 $bootstrap = new Bootstrap();
 //$bootstrap->processRequest();
