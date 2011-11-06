@@ -31,7 +31,7 @@ class AdministrationController{
 	
 	private function requestLogin()
 	{
-		
+		$this->registry->getObject('template')->buildFromTemplates( 'login.tpl.php' );
 	}
 	
 	private function notAdministrator()
