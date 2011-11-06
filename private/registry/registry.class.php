@@ -136,6 +136,18 @@ class IckleRegistry {
 		}
 	}
 	
+	/**
+	 * Display an inline notification to the user
+	 * @param String $type
+	 * @param String $heading
+	 * @param String $message
+	 * @return void
+	 */
+	public function notify( $type, $heading, $message )
+	{
+		$_SESSION['notification_message'] = array( 'type' => $type, 'heading'=> $heading, 'message' => $message );
+	}
+	
 	
 	
 	
