@@ -43,9 +43,7 @@ class Bootstrap
 		require_once( FRAMEWORK_PATH . 'registry/registry.class.php' );
 		$this->registry = new IckleRegistry( $defaultRegistryObjects );
 		$this->defaultRegistrySetup();
-		
-		$this->registry->getObject('template')->getPage()->addTag('site_url', $this->registry->getSetting('site_url') );
-		
+				
 		if( ACCESS_POINT == 'BACK' )
 		{
 			$this->administrationDelegation();
@@ -63,7 +61,14 @@ class Bootstrap
 	
 	private function frontEndDelegation()
 	{
-		
+		if( ( (bool) intval( $this->registry->getSetting('site_ssl') ) ) )
+		{
+			$this->registry->getObject('template')->getPage()->addTag( 'siteurl', str_replace( 'http://', 'https://', $this->registry->getSetting('site_url' ) ) );
+		}
+		else
+		{
+			$this->registry->getObject('template')->getPage()->addTag( 'site_url', $this->registry->getSetting('site_url' ) );
+		}
 		require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
 		$fc = new Frontcontroller( $this->registry );
 		$fc->process();
@@ -71,6 +76,14 @@ class Bootstrap
 	
 	private function administrationDelegation()
 	{
+		if( ( (bool) intval( $this->registry->getSetting('admin_ssl') ) ) )
+		{
+			$this->registry->getObject('template')->getPage()->addTag( 'siteurl', str_replace( 'http://', 'https://', $this->registry->getSetting('site_url' ) ) );
+		}
+		else
+		{
+			$this->registry->getObject('template')->getPage()->addTag( 'site_url', $this->registry->getSetting('site_url' ) );
+		}
 		$this->registry->getObject('template')->getPage()->addTag('admin_folder', $this->registry->getSetting('admin_folder') );
 		$this->registry->storeSetting( $this->registry->getSetting('administration_view'), 'view' );
 		require_once( FRAMEWORK_PATH . 'controllers/administration/administration.controller.php' );
