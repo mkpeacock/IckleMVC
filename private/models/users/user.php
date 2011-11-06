@@ -20,6 +20,7 @@ class User {
 	
 	/**
 	 * Users email address
+	 * @var String
 	 */
 	private $email;
 	private $active;
