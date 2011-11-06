@@ -14,8 +14,6 @@ class Bootstrap
 	 */
 	private $registry;
 	
-
-	
 	/**
 	 * Bootstrap constructor
 	 * @return void
@@ -39,23 +37,38 @@ class Bootstrap
 		$defaultRegistryObjects['contenttreebuilder'] = $ctb;
 		$fm = array( 'abstract' => null, 'folder' => 'menu', 'file' => 'frontmenu', 'class' => 'Frontmenu', 'key' => 'frontmenu' );
 		$defaultRegistryObjects['frontmenu'] = $fm;
+		$auth = array( 'abstract' => null, 'folder' => 'authentication', 'file' => 'authentication', 'class' => 'Authentication', 'key' => 'authentication' );
+		$defaultRegistryObjects['authentication'] = $auth;
 		
 		require_once( FRAMEWORK_PATH . 'registry/registry.class.php' );
 		$this->registry = new IckleRegistry( $defaultRegistryObjects );
 		$this->defaultRegistrySetup();
 		
+		if( ACCESS_POINT == 'BACK' )
+		{
+			$this->administrationDelegation();
+		}
+		else
+		{
+			$this->frontEndDelegation();
+		}
 		
-		require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
-		$fc = new Frontcontroller( $this->registry );
-		$fc->process();
-
 		$this->registry->getObject('template')->parseOutput();
 		print $this->registry->getObject('template')->getPage()->getContentToPrint();
 		
-		//require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
-		//$fc = new Frontcontroller( $this->registry );
-		//$fc->process();
-		
+	}
+	
+	private function frontEndDelegation()
+	{
+		require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
+		$fc = new Frontcontroller( $this->registry );
+		$fc->process();
+	}
+	
+	private function administrationDelegation()
+	{
+		require_once( FRAMEWORK_PATH . 'controllers/administration/administration.controller.php' );
+		$fc = new AdministrationController( $this->registry );
 	}
 	
 	/**

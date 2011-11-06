@@ -5,7 +5,8 @@
  * @author Michael Peacock
  */
 error_reporting( -1 );
-define( "PUBLIC_PATH", dirname( __FILE__ ) ."/" );
+define('ACCESS_POINT', 'FRONT' );
+require_once('const.php');
 require_once('../private/bootstrap.php');
 $bootstrap = new Bootstrap();
 //$bootstrap->processRequest();
