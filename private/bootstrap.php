@@ -67,6 +67,7 @@ class Bootstrap
 	
 	private function administrationDelegation()
 	{
+		$this->registry->storeSetting( $this->registry->getSetting('administration_view'), 'view' );
 		require_once( FRAMEWORK_PATH . 'controllers/administration/administration.controller.php' );
 		$fc = new AdministrationController( $this->registry );
 	}
