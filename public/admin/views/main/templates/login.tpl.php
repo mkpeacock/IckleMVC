@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <base href="{site_url}{admin_folder}" />
     <title>Please Login, IckleMVC Administration</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -93,18 +94,19 @@
         </div>
         <div class="row">
           <div class="span10">
-            <form>
+          {notification_message}
+            <form action="" method="post">
 	        <fieldset>
 	          <div class="clearfix">
 	            <label for="xlInput">Your username</label>
 	            <div class="input">
-	              <input class="xlarge" id="" name="" size="30" type="text" />
+	              <input class="xlarge" id="ickle_auth_user" name="ickle_auth_user" size="30" type="text" />
 	            </div>
 	          </div><!-- /clearfix -->
 	          <div class="clearfix">
 	            <label for="xlInput">Your password</label>
 	            <div class="input">
-	              <input class="xlarge" id="" name="" size="30" type="password" />
+	              <input class="xlarge" id="ickle_auth_pass" name="ickle_auth_pass" size="30" type="password" />
 	            </div>
 	          </div><!-- /clearfix -->
 	            <div class="clearfix">
