@@ -64,13 +64,24 @@ class Contents{
 							 	content c 
 							 		LEFT JOIN 
 							 				users ua ON ( ua.ID=c.creator ) %s 
-							 WHERE %s v.ID=c.current_version_id 
+							 WHERE v.ID=c.current_version_id 
 							 		AND t.ID=c.type 
 							 		AND t.reference='%s' 
-							 		AND ( c.deleted=%d OR c.deleted=%d ) 
+							 		AND ( c.deleted=%d OR c.deleted=%d ) %s
 							 ORDER BY c.`order` ASC";
 							 
-		return sprintf( $this->defaultSQL, $fields, $tables, $joins, $conditions, $type, $deleted, $deletedOr );
+		return sprintf( $this->defaultSQL, $fields, $tables, $joins, $type, $deleted, $deletedOr, $conditions );
+	}
+	
+	/**
+	 * Build some basic content objects from an SQL statement
+	 * @param String $sql
+	 * @return array
+	 */
+	private function buildFromSQL( $sql )
+	{
+		$tor = array();
+		return $tor;
 	}
 	
 }
