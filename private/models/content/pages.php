@@ -22,7 +22,7 @@ class Pages extends Contents {
 		$fields = ", IFNULL( tplf.files, '" . $defaultfiles ."' ) as template_files ";
 		$tables = " content_versions_pages p LEFT JOIN templates tpl ON (p.template=tpl.ID) LEFT JOIN templates_files tplf ON (tpl.file=tplf.ID), ";
 		$joins = "";
-		$conditions = " p.ID=v.ID AND " . $conditions;
+		$conditions = " AND p.ID=v.ID " . $conditions;
 			
 		return parent::generateSQL( $fields, $tables, $joins, $conditions, 'page' );
 			

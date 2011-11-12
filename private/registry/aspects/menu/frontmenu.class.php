@@ -67,7 +67,7 @@ class Frontmenu {
 		require_once( FRAMEWORK_PATH . 'models/content/contents.php' );
 		require_once( FRAMEWORK_PATH . 'models/content/pages.php' );
 		$pages = new Pages( $this->registry );
-		$this->pages = $this->registry->getObject('contenttreebuilder')->setSQL( $pages->getSQL( " c.menu=1 AND c.active=1 AND " ) )->generateStructure( 'page' )->getStructure();
+		$this->pages = $this->registry->getObject('contenttreebuilder')->setSQL( $pages->getSQL( " AND c.menu=1 AND c.active=1  " ) )->generateStructure( 'page' )->getStructure();
 		require_once( FRAMEWORK_PATH . 'libraries/internal/tree/tree.class.php' );
 		$treeplanter = new TreePlanter();
 		$treesurgeon = new TreeSurgeon();
