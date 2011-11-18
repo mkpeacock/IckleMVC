@@ -1,11 +1,12 @@
 <?php
+require_once( FRAMEWORK_PATH . 'models/model.abstract.class.php' );
 /**
  * Root content type
  * 
  * @author Michael Peacock
  * @copyright IckleMVC Project, CentralApps Limited
  */
-class Content {
+class Content extends Model{
 	
 	protected $registry;
 	

@@ -1,9 +1,9 @@
 <?php
-
+require_once( FRAMEWORK_PATH . 'models/smodel.abstract.class.php' );
 /**
  * Content S model
  */
-class Contents{
+class Contents extends SModel{
 	
 	// time formats for query: escaped for sprintf
 	private $timestampFormatter = '%%D %%M %%Y %%H:%%i';
@@ -78,7 +78,7 @@ class Contents{
 	 * @param String $sql
 	 * @return array
 	 */
-	private function buildFromSQL( $sql )
+	protected function buildFromSQL( $sql )
 	{
 		$tor = array();
 		return $tor;
