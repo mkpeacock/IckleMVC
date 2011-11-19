@@ -69,9 +69,9 @@ public function process( $fallback=false )
 	$bit0 = $this->registry->getObject('urlprocessor')->getURLBit(0);
 	if( in_array( $bit0, $this->activeControllers ) && $fallback == false )
 	{
-		if( file_exists( FRAMEWORK_PATH . 'controllers/' . $bit0 . '/' . $bit0 . 'controller.php' ) )
+		if( file_exists( FRAMEWORK_PATH . 'controllers/' . $bit0 . '/' . $bit0 . '.controller.php' ) )
 		{
-			require_once( FRAMEWORK_PATH . 'controllers/' . $bit0 . '/' . $bit0 . 'controller.php' );
+			require_once( FRAMEWORK_PATH . 'controllers/' . $bit0 . '/' . $bit0 . '.controller.php' );
 			$controller = ucfirst( $bit0 ) . 'controller';
 			$controller = new $controller( $this->registry, true );
 		}
