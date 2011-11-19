@@ -47,7 +47,7 @@ class Frontcontroller {
 	 */
 	public function setActiveControllers( $activeControllers=array() )
 	{
-		$this->activeController = $activeControllers;
+		$this->activeControllers = $activeControllers;
 	}
 	
 	/**
