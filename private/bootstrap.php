@@ -24,24 +24,32 @@ class Bootstrap
 		session_start();
 		session_regenerate_id();
 		
-		$defaultRegistryObjects = array();
-		$db = array( 'abstract' => 'database', 'folder' => 'database', 'file' => 'mysql.database', 'class' => 'MySQLDatabase', 'key' => 'db' );
-		$defaultRegistryObjects['db'] = $db;
-		$template = array( 'abstract' => null, 'folder' => 'template', 'file' => 'template', 'class' => 'Template', 'key' => 'template' );
-		$defaultRegistryObjects['template'] = $template;
-		$urlp = array( 'abstract' => null, 'folder' => 'urlprocessor', 'file' => 'urlprocessor', 'class' => 'URLProcessor', 'key' => 'urlprocessor' );
-		$defaultRegistryObjects['urlprocessor'] = $urlp;
-		$scope = array( 'abstract' => 'scope', 'folder' => 'scope', 'file' => 'primary', 'class' => 'Primaryscope', 'key' => 'scope' );
-		$defaultRegistryObjects['scope'] = $scope;
-		$ctb = array( 'abstract' => null, 'folder' => 'contenttreebuilder', 'file' => 'contenttreebuilder', 'class' => 'ContentTreeBuilder', 'key' => 'contenttreebuilder' );
-		$defaultRegistryObjects['contenttreebuilder'] = $ctb;
-		$fm = array( 'abstract' => null, 'folder' => 'menu', 'file' => 'frontmenu', 'class' => 'Frontmenu', 'key' => 'frontmenu' );
-		$defaultRegistryObjects['frontmenu'] = $fm;
-		$auth = array( 'abstract' => null, 'folder' => 'authentication', 'file' => 'authentication', 'class' => 'Authentication', 'key' => 'authentication' );
-		$defaultRegistryObjects['authentication'] = $auth;
+		require_once( 'splClassLoader.php' );
+		$classLoader = new SplClassLoader('IckleMVC\Registry', FRAMEWORK_PATH );
+		$classLoader->register();
+		$classLoader = new SplClassLoader('IckleMVC\Models', FRAMEWORK_PATH );
+        $classLoader->register();
+        $classLoader = new SplClassLoader('IckleMVC\Controllers', FRAMEWORK_PATH );
+        $classLoader->register();
+        $classLoader = new SplClassLoader('IckleMVC\Libraries', FRAMEWORK_PATH );
+        $classLoader->register();
 		
-		require_once( FRAMEWORK_PATH . 'registry/registry.class.php' );
-		$this->registry = new IckleRegistry( $defaultRegistryObjects );
+		$defaultRegistryObjects = array(
+											'db' => '\IckleMVC\Registry\Database_MySQL',
+											'template' => '\IckleMVC\Registry\Template',
+											'scope' => '\IckleMVC\Registry\PrimaryScope',
+											'urlprocessor' => '\IckleMVC\Registry\URLProcessor',
+											'frontmenu' => '\IckleMVC\Registry\FrontMenu',
+											'contenttreebuilder' => '\IckleMVC\Registry\ContentTreeBuilder',
+											'authentication' => '\IckleMVC\Registry\Authentication'
+											
+		
+										);
+		
+		
+		
+		//require_once( FRAMEWORK_PATH . 'registry/registry.class.php' );
+		$this->registry = new \IckleMVC\Registry\IckleRegistry( $defaultRegistryObjects );
 		$this->defaultRegistrySetup();
 				
 		if( ACCESS_POINT == 'BACK' )
@@ -69,8 +77,7 @@ class Bootstrap
 		{
 			$this->registry->getObject('template')->getPage()->addTag( 'site_url', $this->registry->getSetting('site_url' ) );
 		}
-		require_once( FRAMEWORK_PATH . 'controllers/front/front.controller.php' );
-		$fc = new Frontcontroller( $this->registry );
+		$fc = new \IckleMVC\Controllers\Front_Controller( $this->registry );
 		$fc->process();
 	}
 	
