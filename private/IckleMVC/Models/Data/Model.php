@@ -51,13 +51,19 @@ abstract class Data_Model{
 		$this->valid = $valid;
 	}
 	
+	/**
+	 * Call overloading: currently only for getProperty(), and setProperty( $value ) methods
+	 * @param String $name
+	 * @param array $arguments
+	 * @return mixed
+	 */
 	public function __call( $name, $arguments )
 	{
 		
 		if( strlen( $name ) > 3 )
 		{
 			$initial = substr( $name, 0, 3 );
-			$remainder = $this->getProperty( $name );
+			$remainder = $this->propertyFromMethod( $name );
 			switch( $initial )
 			{
 				case 'set':
@@ -72,14 +78,46 @@ abstract class Data_Model{
 	}
 	
 	/**
+	 * Convert a field name to a property name
+	 * @param String $name the name of the database field e.g. my_database_field
+	 * @return String the name of the property e.g. myDatabaseField
+	 */
+	public function fieldNameToProperty( $name )
+	{
+		$property = implode( ( array_map( 'ucfirst', explode( '_', $name ) ) ) );
+		return lcfirst( $property );
+	}
+	
+	/**
+	 * Converts a property name into a field name
+	 * @param String $property the name of the object property e.g. id, name, someProperty
+	 * @return String e.g. id, name, some_property
+	 */
+	public function propertyToFieldName( $property )
+	{
+		return strtolower( preg_replace("/([A-Z])/",'_\\1',$property) );
+	}
+	
+	/**
 	 * Get the name of an object property from a method name, pased from the __call() method above
 	 * @param String $methodName
 	 * @return String
 	 */
-	private function getProperty( $methodName )
+	private function propertyFromMethod( $methodName )
 	{
-		$property = substr( $methodName, 3, strlen( $methodName ) );
-		return strtolower( substr( $property, 0, 1 ) ) . substr( $property, 1 );
+		return lcfirst( substr( $methodName, 3, strlen( $methodName ) ) );
+		
+	}
+	
+	/**
+	 * Lower cases the first letter of a string
+	 * - look at moving this out into a static class
+	 * @param String $str
+	 * @return String
+	 */
+	private function lcfirst( $str )
+	{
+		return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
 	}
 	
 	/**
