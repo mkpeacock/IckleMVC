@@ -5,6 +5,10 @@
 2. Make stricter MVC implementation. Move data-access from model into an object linked to the model
 3. Flesh out scope concept
 4. Actually do some development work on this project [started]
+5. Exceptions
+6. Unit tests
+7. Think more about routing
+8. Put into Jenkins
 
 ## Using the Core data access models
 
