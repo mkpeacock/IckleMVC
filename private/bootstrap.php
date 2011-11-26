@@ -108,14 +108,12 @@ class Bootstrap
 		$db_credentials = array();
 		require_once( FRAMEWORK_PATH . 'config.php' );
 		$this->registry->getObject('db')->newConnection( $db_credentials['default_host'], $db_credentials['default_user'], $db_credentials['default_password'], $db_credentials['default_database'] );
-		$sql = "SELECT * FROM settings WHERE core=1";
-		$this->registry->getObject('db')->executeQuery( $sql );
-		if( $this->registry->getObject('db')->getNumRows() > 0 )
+		
+		$settings = new \IckleMVC\Models\Settings_Data_Collection( $this->registry );
+		$settings->buildCoreSettings();
+		foreach( $settings as $setting )
 		{
-			while( $row = $this->registry->getObject('db')->getRows() )
-			{
-				$this->registry->storeSetting( $row['key'], $row['data'] );
-			}
+			$this->registry->storeSetting( $setting->getKey(), $setting->getData() );
 		}
 		
 		$this->registry->getObject('authentication')->authenticationCheck();
