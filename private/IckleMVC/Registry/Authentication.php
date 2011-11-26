@@ -43,7 +43,7 @@ class Authentication {
     {
     	if( isset( $_POST ) && is_array( $_POST ) && count( $_POST ) > 0 && ( isset( $_POST['ickle_auth_user'] ) || isset( $_POST['ickle_auth_pass'] ) ) )
     	{
-    		$this->user = new User( $this->registry, 0, ( isset( $_POST['ickle_auth_user'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_user'] ) : '' ), ( isset( $_POST['ickle_auth_pass'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_pass'] ) : '' ) );
+    		$this->user = new \IckleMVC\Models\Users_User( $this->registry, 0, ( isset( $_POST['ickle_auth_user'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_user'] ) : '' ), ( isset( $_POST['ickle_auth_pass'] ) ? $this->registry->getObject('db')->sanitizeData( $_POST['ickle_auth_pass'] ) : '' ) );
     		if( $this->user->isValid() )
     		{
     			$_SESSION['ickle_auth_userid'] = $this->user->getID();
