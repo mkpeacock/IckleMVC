@@ -70,7 +70,11 @@ class Administration_Controller{
 	 */
 	private function process()
 	{
-		echo 'success';
+		$bit = $this->registry->getObject('urlprocessor')->getURLBit( 0 );
+		if( in_array( $bit, $this->sections ) )
+		{
+			// delegate control
+		}
 	}
 	
 	
