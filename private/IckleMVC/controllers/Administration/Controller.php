@@ -1,10 +1,11 @@
 <?php
+namespace IckleMVC\Controllers;
 /**
  * Administration front controller
  * @author Michael Peacock
  * @copyright IckleMVC Project
  */
-class AdministrationController{
+class Administration_Controller{
 	
 	/**
 	 * Registry object
@@ -24,7 +25,7 @@ class AdministrationController{
 	 * @param bool $autoProcess
 	 * @return void
 	 */
-	public function __construct( IckleRegistry $registry, $autoProcess=true )
+	public function __construct( \IckleMVC\Registry\IckleRegistry $registry, $autoProcess=true )
 	{
 		$this->registry = $registry;
 		if( $this->registry->getObject('authentication')->isLoggedIn() )
