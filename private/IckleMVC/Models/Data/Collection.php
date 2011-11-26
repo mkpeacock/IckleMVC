@@ -1,7 +1,7 @@
 <?php
 namespace IckleMVC\Models;
 
-abstract class Data_Collection implements IteratorAggregate, Countable{
+abstract class Data_Collection implements \IteratorAggregate, \Countable{
 	
 	protected $objects = array();
 
