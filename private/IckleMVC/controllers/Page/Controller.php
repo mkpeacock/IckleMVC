@@ -36,7 +36,7 @@ class Page_Controller{
 					call_user_func_array(array( $templateObject, "buildFromTemplates"), $page->getTemplateFiles() );
 					
 					//$this->registry->getObject('template')->buildFromTemplates( 'header.tpl.php', 'main.tpl.php', 'footer.tpl.php' );
-					$this->registry->getObject('frontmenu')->buildMenu( $page->getID() );
+					$this->registry->getObject('frontmenu')->buildMenu( $page->getContentId() );
 				}
 				else
 				{
