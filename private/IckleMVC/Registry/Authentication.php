@@ -59,7 +59,7 @@ class Authentication {
     	} 
     	elseif( isset( $_SESSION['ickle_auth_userid'] ) && intval( $_SESSION['ickle_auth_userid'] ) > 0 )
     	{
-    		$this->user = new User( $this->registry, intval( $_SESSION['ickle_auth_userid'] ) );
+    		$this->user = new  \IckleMVC\Models\Users_User( $this->registry, intval( $_SESSION['ickle_auth_userid'] ) );
     	}
     	else
     	{
