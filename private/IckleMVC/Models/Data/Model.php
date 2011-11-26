@@ -201,7 +201,7 @@ abstract class Data_Model extends Data_Save{
 	 */
 	public function __set( $name, $value )
 	{
-		$this->data[ $name ] = $value;
+		$this->_data[ $name ] = $value;
 	}
 	
 	/**
