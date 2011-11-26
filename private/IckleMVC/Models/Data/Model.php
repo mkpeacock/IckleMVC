@@ -18,7 +18,7 @@ abstract class Data_Model extends Data_Save{
 	 * Core data supplied from the database
 	 * @var array
 	 */
-	protected $data = array();
+	protected $_data = array();
 	
 	protected $primaryKeyField = null;
 	protected $table;
@@ -80,18 +80,18 @@ abstract class Data_Model extends Data_Save{
 			if( is_numeric( $this->$pkf ) && $this->$pkf === intval( $this->$pkf ) )
 			{
 				// its an int
-				$this->registry->getObject('db')->updateRecords( $this->table, $this->data, "{$this->primaryKeyField}={$this->$pkf}" );
+				$this->registry->getObject('db')->updateRecords( $this->table, $this->_data, "{$this->primaryKeyField}={$this->$pkf}" );
 			}
 			else
 			{
 				// its a string
-				$this->registry->getObject('db')->updateRecords( $this->table, $this->data, "{$this->primaryKeyField}='{$this->$pkf}'" );
+				$this->registry->getObject('db')->updateRecords( $this->table, $this->_data, "{$this->primaryKeyField}='{$this->$pkf}'" );
 			}
 		}
 		else
 		{
 			// insert
-			$this->registry->getObject('db')->insertRecords( $this->table, $this->data );
+			$this->registry->getObject('db')->insertRecords( $this->table, $this->_data );
 		}
 	}
 	
@@ -121,7 +121,7 @@ abstract class Data_Model extends Data_Save{
 	 */
 	public function __isset( $name )
 	{
-		return isset( $this->data[ $name ] );
+		return isset( $this->_data[ $name ] );
 	}
 	
 	/**
@@ -211,9 +211,9 @@ abstract class Data_Model extends Data_Save{
 	 */
 	public function __get( $name )
 	{
-		if( array_key_exists( $name, $this->data ) )
+		if( array_key_exists( $name, $this->_data ) )
 		{
-			return $this->data[ $name ];
+			return $this->_data[ $name ];
 		}
 	}
 	
