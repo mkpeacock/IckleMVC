@@ -24,10 +24,10 @@ abstract class Data_Model extends Data_Save{
 	/**
 	 * Constructor
 	 * @param IckleRegistry $registry
-	 * @param mixed $ID
+	 * @param mixed $anotherField
 	 * @return void
 	 */
-	abstract public function __construct( \IckleMVC\Registry\IckleRegistry $registry, $ID=0 );
+	abstract public function __construct( \IckleMVC\Registry\IckleRegistry $registry, $anotherField );
 	
 	protected function setPrimaryKeyField( $pkf='id' )
 	{
