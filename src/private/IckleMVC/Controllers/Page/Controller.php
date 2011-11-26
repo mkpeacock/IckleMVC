@@ -24,7 +24,7 @@ class Page_Controller{
 		if( $autoProcess )
 		{
 			$pagePath = $this->registry->getObject('db')->sanitizeData( $this->registry->getObject('urlprocessor')->getURLPath() );
-			$page = new \IckleMVC\Models\Content_Page( $this->registry, 0, $pagePath, ( $pagePath == '' ) ? true : false );
+			$page = new \IckleMVC\Models\Content_Data_Page( $this->registry, 0, $pagePath, ( $pagePath == '' ) ? true : false );
 			if( $page->isPublished() )
 			{
 				if( ! $page->requiresAuthentication() || ( $page->requiresAuthentication() && $this->registry->getObject('autentication')->getUser()->isLoggedIn() ) )

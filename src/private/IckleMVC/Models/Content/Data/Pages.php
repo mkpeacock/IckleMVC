@@ -5,7 +5,7 @@ namespace IckleMVC\Models;
  * 
  * @author Michael Peacock
  */
-class Content_Pages extends Content_Contents {
+class Content_Data_Pages extends Content_Data_Contents {
 	
 	/**
 	 * Page S content model constructor

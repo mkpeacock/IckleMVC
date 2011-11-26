@@ -5,7 +5,7 @@ namespace IckleMVC\Models;
  * 
  * @author Michael Peacock
  */
-class Content_Page extends Content_Content {
+class Content_Data_Page extends Content_Data_Content {
 	
 	private $templateFiles;
 	
