@@ -51,6 +51,8 @@ class Bootstrap
 		//require_once( FRAMEWORK_PATH . 'registry/registry.class.php' );
 		$this->registry = new \IckleMVC\Registry\IckleRegistry( $defaultRegistryObjects );
 		$this->defaultRegistrySetup();
+		
+		
 				
 		if( ACCESS_POINT == 'BACK' )
 		{
