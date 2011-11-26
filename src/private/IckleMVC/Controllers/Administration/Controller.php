@@ -71,9 +71,12 @@ class Administration_Controller{
 	private function process()
 	{
 		$bit = $this->registry->getObject('urlprocessor')->getURLBit( 0 );
+		$bit = ( $bit == '' ) ? 'content' : $bit;
 		if( in_array( $bit, $this->sections ) )
 		{
-			// delegate control
+			// delegate control: lets have a think more about Routing at some point...
+			$class = '\IckleMVC\Controllers\Administration_' . ucfirst( $bit ) . '_Delegate';
+			$delegate = new $class( $this->registry ); 
 		}
 	}
 	
