@@ -1,6 +1,7 @@
 <?php
+namespace IckleMVC\Controllers;
 
-class Authenticatecontroller {
+class Authenticate_Controller extends Controller{
 	
 	public function __construct()
 	{
