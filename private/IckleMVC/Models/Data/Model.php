@@ -12,6 +12,8 @@ abstract class Data_Model extends Data_Save{
 	 */
 	protected $valid=false;
 	
+	protected $registry;
+	
 	/**
 	 * Core data supplied from the database
 	 * @var array
@@ -48,9 +50,18 @@ abstract class Data_Model extends Data_Save{
 			$row = $this->registry->getObject('db')->getRows();
 			foreach( $row as $field => $data )
 			{
-				$this->fieldNameToProperty( $field );
+				$field = $this->fieldNameToProperty( $field );
 				$this->$field = $data;
 			}
+		}
+	}
+	
+	protected function buildFromArray( $array )
+	{
+		foreach( $array as $field => $data )
+		{
+			$field = $this->fieldNameToProperty( $field );
+			$this->$field = $data;
 		}
 	}
 	
