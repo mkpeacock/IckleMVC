@@ -95,8 +95,8 @@ class Bootstrap
 		}
 		$this->registry->getObject('template')->getPage()->addTag('admin_folder', $this->registry->getSetting('admin_folder') );
 		$this->registry->storeSetting( $this->registry->getSetting('administration_view'), 'view' );
-		require_once( FRAMEWORK_PATH . 'controllers/administration/administration.controller.php' );
-		$fc = new AdministrationController( $this->registry );
+		
+		$fc = new \IckleMVC\Controllers\Administration_Controller( $this->registry );
 	}
 	
 	/**
