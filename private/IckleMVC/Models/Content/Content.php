@@ -7,177 +7,12 @@ namespace IckleMVC\Models;
  * @author Michael Peacock
  * @copyright IckleMVC Project, CentralApps Limited
  */
-class Content_Content extends Model{
+class Content_Content extends Data_Model{
 	
-	protected $registry;
 	
-	/**
-	 * Content ID
-	 * @var int
-	 */
-	protected $id;
-	
-	/**
-	 * Contents version ID
-	 * @var int
-	 */
-	protected $versionID;
-	
-	/**
-	 * User ID of the creator of the content
-	 * @var int
-	 */
-	protected $contentCreator;
-	
-	/**
-	 * Username of the creator of the content
-	 * @var String
-	 */
-	protected $contentCreatorUsername;
-	
-	/**
-	 * Timestamp the content was created
-	 * @var String
-	 */
-	protected $contentCreated;
-	
-	/**
-	 * Friendly date of the date/time the content was created
-	 * @var String
-	 */
-	protected $contentCreatedFriendly;
-	
-	/**
-	 * User ID of the creator of the version
-	 * @var int
-	 */
-	protected $versionCreator;
-	
-	/**
-	 * Username of the creator of the version
-	 * @var String
-	 */
-	protected $versionCreatorUsername;
-	
-	/**
-	 * Timestamp the version was created
-	 * @var String
-	 */
-	protected $versionCreated;
-	
-	/**
-	 * Friendly date of the date/time the version was created
-	 * @var String
-	 */
-	protected $versionCreatedFriendly;
-	
-	/**
-	 * Timestamp of when the content was published
-	 * @var String
-	 */
-	protected $publicationTimestamp;
-	
-	/**
-	 * Friendly date of when the content was published
-	 * @var String
-	 */
-	protected $publicationDateFriendly;
-	
-	/**
-	 * Date picker formatted date of the date the content was published
-	 * @var String
-	 */
-	protected $publicationDatePicker;
-	
-	/**
-	 * Time the content was published
-	 * @var String
-	 */
-	protected $publicationTime;
-	
-	/**
-	 * Timestamp of when the content expires
-	 * @var String
-	 */
-	protected $expiryTimestamp;
-	
-	/**
-	 * Friendly date of when the content expires
-	 * @var String
-	 */
-	protected $expiryDateFiendly;
-	
-	/**
-	 * Time the content expires
-	 * @var String
-	 */
-	protected $expiryTime;
-	
-	/**
-	 * Is the content active?
-	 * @var bool
-	 */
-	protected $active;
 	protected $activeName = 'Active';
 	protected $inactiveName = 'Disabled';
-	
-	protected $order;
-	
-	protected $requiresAuthentication;
-	
-	/**
-	 * Friendly URL / Path of the content
-	 * @var String
-	 */
-	protected $friendlyURL;
-	
-	/**
-	 * Name of the content element
-	 * @var String
-	 */
-	protected $name;
-	
-	/**
-	 * Title of the content element
-	 * @var String
-	 */
-	protected $title;
-	
-	/**
-	 * Heading of the content element
-	 * @var String
-	 */
-	protected $heading;
-	
-	/**
-	 * Content data for the content element
-	 * @var String
-	 */
-	protected $content;
-	
-	
-	protected $metadataKeywords;
-	protected $metadataDescription;
-	
-	/**
-	 * ID of the Type of the Content
-	 * @var int
-	 */
-	protected $type;
-	
-	protected $parent;
-	
-	/**
-	 * Name of the type of content
-	 * @var String
-	 */
-	protected $typeName;
-	
-	/**
-	 * System reference for the type of content
-	 * @var String
-	 */
-	protected $typeReference;
+
 	
 	// time formats for query: escaped for sprintf
 	private $timestampFormatter = '%%D %%M %%Y %%H:%%i';
@@ -201,6 +36,8 @@ class Content_Content extends Model{
 	{
 		if( ! empty( $contentData ) )
 		{
+			$this->buildFromArray( $contentData );
+			/**
 			$this->id = $contentData['content_id'];
 			$this->versionID = $contentData['version_id'];
 			$this->contentCreator = $contentData['content_creator_user_id'];
@@ -239,6 +76,7 @@ class Content_Content extends Model{
 			$this->requiresAuthentication = $contentData['requires_authentication'];
 			$this->parent = $contentData['parent'];
 			$this->order = $contentData['order'];
+			*/
 		}
 	}
 	
@@ -417,6 +255,13 @@ class Content_Content extends Model{
 	{
 		$tor = array();
 		foreach( $this as $key => $data )
+		{
+			if( ! is_array( $data ) && ! is_object( $data ) )
+			{
+				$tor[ $prefix . $key ] = $data;
+			}
+		}
+		foreach( $this->data as $key => $data )
 		{
 			if( ! is_array( $data ) && ! is_object( $data ) )
 			{
