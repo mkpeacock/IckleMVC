@@ -261,7 +261,7 @@ class Content_Content extends Data_Model{
 				$tor[ $prefix . $key ] = $data;
 			}
 		}
-		foreach( $this->data as $key => $data )
+		foreach( $this->_data as $key => $data )
 		{
 			if( ! is_array( $data ) && ! is_object( $data ) )
 			{
