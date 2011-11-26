@@ -9,8 +9,7 @@ abstract class Controller{
 	
 	protected function loadView( $view )
 	{
-		require_once( FRAMEWORK_PATH . 'views/' . $view . '.view.php' );
-		$view = str_replace( '.', '', $view ) . 'View';
+		$view = '\IckleMVC\Views\\' . ucwords( $view );
 		$this->view = new $view( $this->registry );
 		return $this->view;
 	}
