@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title></title> 
-		<base href="http://localhost/icklemvc/public/" />
+		<base href="http://localhost/icklemvc/src/public/" />
 		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" /> 
 		<meta name="description" content="{page_metaDescription}" /> 
 		<meta name="keywords" content="{page_metaKeywords}" /> 
