@@ -90,22 +90,64 @@ class Database_MySQL extends Database_Database {
 	    return $this->connections[ $this->activeConnection]->insert_id;
     }
     
-    public function insertRecord( $table, $record )
+    public function insertRecord( $table, $record, $updateIfKeyExists=false, $updateSQL="" )
     {
+    	// setup some variables for fields and values
+    	$fields  = "";
+		$values = "";
+		
+		// populate them
+		foreach ($record as $f => $v)
+		{
+			$fields  .= "`$f`,";
+			$values .= ( is_numeric( $v ) && ( intval( $v ) === $v ) ) ? $v."," : "'$v',";
+		}
+		
+		// remove our trailing ,
+    	$fields = substr( $fields, 0, -1 );
+    	// remove our trailing ,
+    	$values = substr( $values, 0, -1 );
     	
+		$insert = "INSERT INTO $table ({$fields}) VALUES({$values})";
+		if( $updateIfKeyExists )
+		{
+			$insert .= " ON DUPLICATE KEY UPDATE {$updateSQL} ";
+		}
+		$this->executeQuery( $insert );
+		return true;
     }
     
     public function insertRecords( $table, $records )
     {
     	
     }
-    
-    public function updateRecord( $table, $record, $condition )
-    {
-     	
-    }
 	
-	public function updateRecords( $table, $records, $conditions )
+	public function updateRecords( $table, $changes, $conditions )
+	{
+		$update = "UPDATE " . $table . " SET ";
+    	foreach( $changes as $field => $value )
+    	{
+    		if( $value == NULL )
+    		{
+    			$update .= "`" . $field . "`=null,";
+    		}
+    		else
+    		{
+    			$update .= "`" . $field . "`='{$value}',";
+    		}
+    	}
+    	   	
+    	// remove our trailing ,
+    	$update = substr($update, 0, -1);
+    	if( $conditions != '' )
+    	{
+    		$update .= " WHERE " . $conditions;
+    	}
+    	$this->executeQuery( $update );
+    	return true;
+	}
+	
+	public function updateRecordsMulti( $table, $records, $conditions )
 	{
 		
 	}

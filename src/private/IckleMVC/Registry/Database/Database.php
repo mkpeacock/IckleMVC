@@ -49,10 +49,9 @@ abstract class Database_Database {
 	abstract public function executeQuery( $sql );
 	abstract public function getNumRows();
 	abstract public function getRows();
-	abstract public function insertRecord( $table, $record );
+	abstract public function insertRecord( $table, $record, $updateIfKeyExists=false, $updateSQL="" );
 	abstract public function getLastInsertID();
 	abstract public function insertRecords( $table, $records );
-	abstract public function updateRecord( $table, $record, $condition );
 	abstract public function updateRecords( $table, $records, $conditions );
 	abstract public function deleteRecords( $table, $condition, $limit );
 	abstract public function getNumAffectedRows();
