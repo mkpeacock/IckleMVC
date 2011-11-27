@@ -131,7 +131,7 @@
 <target name="docblox">
   <exec executable="docblox">
     <arg line="project:run
-               -d ${source}
+               -d ${basedir}/src/private
                -t ${basedir}/build/api" />
   </exec>
 </target>
