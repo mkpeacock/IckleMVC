@@ -1,9 +1,20 @@
 <?php
 
 namespace IckleMVC\Registry;
-
+/**
+ * Template engine
+ * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage Scope
+ */
 class Primaryscope extends \IckleMVC\Registry\Scope {
 	
+	/**
+	 * Primary scope constructor
+	 * @param IckleRegistry $registry
+	 * @return void
+	 */
 	public function __construct( IckleRegistry $registry )
 	{
 		$this->registry = $registry;

@@ -1,5 +1,12 @@
 <?php
 namespace IckleMVC\Controllers;
+/**
+ * Page controller
+ * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Controllers
+ * @subpackage Administration
+ */
 class Administration_Content_Pages extends Controller {
 	
 	protected $registry;

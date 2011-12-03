@@ -4,6 +4,8 @@ namespace IckleMVC\Registry;
  * Authentication processor
  * 
  * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
  */
 class Authentication {
 	

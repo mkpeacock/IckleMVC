@@ -4,7 +4,9 @@ namespace IckleMVC\Registry;
  * Ickle MVC MySQL Database Library
  * 
  * @author Michael Peacock
- * @copyright Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage Registry
  */
 class Database_MySQL extends Database_Database {
 	

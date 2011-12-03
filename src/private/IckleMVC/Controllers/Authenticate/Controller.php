@@ -1,6 +1,11 @@
 <?php
 namespace IckleMVC\Controllers;
-
+/**
+ * Authenticate controller
+ * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Controllers
+ */
 class Authenticate_Controller extends Controller{
 	
 	public function __construct()

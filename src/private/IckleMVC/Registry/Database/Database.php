@@ -4,7 +4,9 @@ namespace IckleMVC\Registry;
  * IckleMVC Abstract Database Class
  * 
  * @author Michael Peacock
- * @copyright Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage Database
  */
 abstract class Database_Database {
 	

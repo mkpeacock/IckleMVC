@@ -3,6 +3,8 @@ namespace IckleMVC\Registry;
 /**
  * Ickle MVC URL Processor
  * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
  */
 class Urlprocessor {
 	

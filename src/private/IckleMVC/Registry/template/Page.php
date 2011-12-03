@@ -1,10 +1,11 @@
 <?php
 namespace IckleMVC\Registry;
-
 /**
- * Page template object
- * 
+ * Template Page object
  * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage template
  */
 class Template_Page {
 

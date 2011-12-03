@@ -1,16 +1,30 @@
 <?php
 namespace IckleMVC\Registry;
 /**
- * 
+ * Template engine
+ * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage template
  */
 class Template {
 	
+	/**
+	 * Registry object
+	 * @var IckleRegistry
+	 */
 	private $registry;
 		
+	/**
+	 * Page object
+	 * @var Page
+	 */	
 	private $page;
 
 	/**
-	 * 
+	 * Constructor
+	 * @param IckleRegistry $registry
+	 * @return void
 	 */
    	public function __construct( IckleRegistry $registry )
 	{
@@ -20,7 +34,8 @@ class Template {
     }
     
     /**
-     * 
+     * Get the page object
+     * @return Page
      */
     public function getPage()
     {
@@ -43,7 +58,9 @@ class Template {
     }
     
     /**
-     * 
+     * Add a javascript file to the template
+     * @param String $file_url
+     * @return void
      */
     public function addJavaScriptFile( $file_url )
     {
@@ -306,7 +323,8 @@ class Template {
     }
     
     /**
-     * 
+     * Parse any additional elements
+     * @return void
      */
     public function parseExtras()
     {

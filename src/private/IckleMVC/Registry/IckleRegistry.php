@@ -5,6 +5,8 @@ namespace IckleMVC\Registry;
  * Ickle MVC
  * IckleRegistry Object
  * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
  */
 class IckleRegistry {
 	

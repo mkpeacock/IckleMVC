@@ -4,6 +4,8 @@ namespace IckleMVC\Registry;
  * Content Tree Structure Generator
  * 
  * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
  */
 class ContentTreeBuilder {
 	

@@ -2,15 +2,49 @@
 namespace IckleMVC\Registry;
 /**
  * Front menu
+ * @author Michael Peacock
+ * @copyright IckleMVC
+ * @package IckleMVC/Registry
+ * @subpackage Menu
  */
 class Frontmenu {
     
+    /**
+     * Pages
+     * @var array
+     */
     private $pages = array();
+    
+    /**
+     * Page keys
+     * @var array
+     */
 	private $pageKeys = array();
+	
+	/**
+	 * Overall page structure
+	 * @var array
+	 */
 	private $structure = array();
+	
+	/**
+	 * Primary menu array
+	 * @var array
+	 */
 	private $primary  = array();
+	
+	/**
+	 * Sub menu array
+	 * @var array
+	 */
 	private $sub = array();
+	
+	/**
+	 * Type of menu to generate
+	 * @var string
+	 */
 	private $menuType = 'sub';
+	
 	
 	private $customStuffSet = false;
 	private $customLinkName = '';
@@ -18,7 +52,17 @@ class Frontmenu {
 	private $customFeatherID = 0;
 	private $customMisc = array();
 	private $includedExtentions = array();
+	
+	/**
+	 * Registry object
+	 * @var IckleRegistry
+	 */
 	private $registry;
+	
+	/**
+	 * Additional breadcrumbs
+	 * @var array
+	 */
 	private $extracrumbs = array();
 	
 	/**

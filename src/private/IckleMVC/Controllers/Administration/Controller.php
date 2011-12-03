@@ -4,6 +4,8 @@ namespace IckleMVC\Controllers;
  * Administration front controller
  * @author Michael Peacock
  * @copyright IckleMVC Project
+ * @package IckleMVC/Controllers
+ * @subpackage Administration
  */
 class Administration_Controller{
 	
