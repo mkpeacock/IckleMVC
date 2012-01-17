@@ -20,7 +20,8 @@ class Administration_Content_Pages extends Controller {
 	
 	public function listPages()
 	{
-		$this->loadView( 'administration_content_pages_list' )->generate();
+		$pages = new \IckleMVC\Models\Content_Data_Pages( $this->registry );
+		$this->loadView( 'administration_content_pages_list' )->generate( $pages );
 	}
 	
 	
