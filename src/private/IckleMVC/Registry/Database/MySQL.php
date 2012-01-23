@@ -224,6 +224,20 @@ class Database_MySQL extends Database_Database {
     }
     
     /**
+    * Disconnect from a specific connection
+    * @param int $connectionID
+    * @return void
+    */
+    public function disconnect( $connectionID )
+    {
+    	if( array_key_exists( $connectionID, $this->connections ) )
+    	{
+    		$this->connections[ $connectionID ]->close();
+    		$this->connections[ $connectionID ] = null;
+    	}
+    }
+    
+    /**
      * Destructor
      * Closes all MySQL connections
      * @return void
@@ -232,7 +246,11 @@ class Database_MySQL extends Database_Database {
     {
     	foreach( $this->connections as $connection )
     	{
-    		$connection->close();
+    		if( ! is_null( $connection ) )
+    		{
+    			 
+    			$connection->close();
+    		}
     	}
     }
 }
