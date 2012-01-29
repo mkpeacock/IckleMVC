@@ -37,13 +37,13 @@ class Bootstrap
         $classLoader->register();
 		
 		$defaultRegistryObjects = array(
-											'db' => '\IckleMVC\Registry\Database_MySQL',
-											'template' => '\IckleMVC\Registry\Template',
-											'scope' => '\IckleMVC\Registry\PrimaryScope',
-											'urlprocessor' => '\IckleMVC\Registry\URLProcessor',
-											'frontmenu' => '\IckleMVC\Registry\FrontMenu',
-											'contenttreebuilder' => '\IckleMVC\Registry\ContentTreeBuilder',
-											'authentication' => '\IckleMVC\Registry\Authentication'
+											'db' => 'IckleMVC\Registry\Database_MySQL',
+											'template' => 'IckleMVC\Registry\Template',
+											'scope' => 'IckleMVC\Registry\PrimaryScope',
+											'urlprocessor' => 'IckleMVC\Registry\URLProcessor',
+											'frontmenu' => 'IckleMVC\Registry\FrontMenu',
+											'contenttreebuilder' => 'IckleMVC\Registry\ContentTreeBuilder',
+											'authentication' => 'IckleMVC\Registry\Authentication'
 											
 		
 										);
