@@ -1,5 +1,6 @@
 <?php
 namespace IckleMVC\Controllers;
+use IckleMVC\Views as view;
 /**
  * Page controller for basic front-end CMS functionality
  * @author Michael Peacock
@@ -29,14 +30,8 @@ class Page_Controller{
 			{
 				if( ! $page->requiresAuthentication() || ( $page->requiresAuthentication() && $this->registry->getObject('autentication')->getUser()->isLoggedIn() ) )
 				{
-					$this->registry->getObject('template')->dataToTags( $page->getData(), 'page_' );
-					$this->registry->getObject('template')->getPage()->setTitle( $page->getTitle() );
-					// display the page
-					$templateObject = $this->registry->getObject('template');
-					call_user_func_array(array( $templateObject, "buildFromTemplates"), $page->getTemplateFiles() );
-					
-					//$this->registry->getObject('template')->buildFromTemplates( 'header.tpl.php', 'main.tpl.php', 'footer.tpl.php' );
-					$this->registry->getObject('frontmenu')->buildMenu( $page->getContentId() );
+					$view = new view\Page_View( $this->registry );
+					$view->generate( $page );
 				}
 				else
 				{
