@@ -9,7 +9,7 @@ abstract class Hooks_Abstract {
 		$this->registry = $registry;
 	}	
 	
-	abstract protected function preParseHook();
+	abstract public function preParseHook();
 	
 }
 
