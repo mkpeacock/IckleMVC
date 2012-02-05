@@ -97,7 +97,7 @@ class Pagination_Generator {
     	else
     	{
     		// normal query, let's strip out everything before the "primary" FROM 
-    		$q = $this->db->executeQuery( $this->db, "SELECT COUNT(*) AS nums " . $this->excludePrimarySelects( $temp_query ) . " LIMIT 1" );
+    		$q = $this->db->executeQuery("SELECT COUNT(*) AS nums " . $this->excludePrimarySelects( $temp_query ) . " LIMIT 1" );
     		if( $this->db->getNumRows() == 1 )
     		{
     			// how many rows?
