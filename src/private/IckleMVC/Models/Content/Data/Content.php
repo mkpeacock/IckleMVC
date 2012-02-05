@@ -101,6 +101,7 @@ class Content_Data_Content extends Data_Model{
 								c.active, 
 								c.order, 
 								c.parent, 
+								c.comments_enabled,
 								c.requires_authentication, 
 								c.created as content_created, 
 								DATE_FORMAT( c.created,  '".$this->timestampFormatter."' ) as content_created_friendly,  
