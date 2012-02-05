@@ -9,7 +9,7 @@ class Content_Data_Blog_Collection extends Content_Data_Contents{
 	
 	public function buildPagination( $page=0 )
 	{
-		$p = new IckleMVC\Libraries\Pagination_Generator( $this->registry->getObject('db') );
+		$p = new \IckleMVC\Libraries\Pagination_Generator( $this->registry->getObject('db') );
 		$p->setLimit(10);
 		$p->setOffset( $page );
 		$p->setQuery( $this->getSQL() );
@@ -28,9 +28,9 @@ class Content_Data_Blog_Collection extends Content_Data_Contents{
 	{
 		$curtime = date('Y-m-d H:i:s');
 		$fields = " ";
-		$tables = ", content_versions_blog_entries b ";
+		$tables = " ";
 		$joins = "";
-		$conditions = " AND b.ID=v.ID AND c.active=1 AND v.publication_timestamp >= '" . $curtime . "'" . $conditions;
+		$conditions = " AND c.active=1 AND v.publication_timestamp >= '" . $curtime . "'" . $conditions;
 			
 		return parent::generateSQL( $fields, $tables, $joins, $conditions, 'blog' );
 			

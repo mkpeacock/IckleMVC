@@ -82,6 +82,7 @@ class Bootstrap
 			$this->registry->getObject('template')->getPage()->addTag( 'site_url', $this->registry->getSetting('site_url' ) );
 		}
 		$fc = new \IckleMVC\Controllers\Front_Controller( $this->registry );
+		$fc->setActiveControllers( array('blog') );
 		$fc->process();
 	}
 	

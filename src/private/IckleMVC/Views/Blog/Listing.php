@@ -8,11 +8,11 @@ class Blog_Listing extends AbstractView{
 		$collection->buildFromPagination();
 		if( count( $collection ) == 0 )
 		{
-			
+			$this->registry->getObject('template')->buildFromTemplates( 'header.tpl.php', 'blog/empty.tpl.php', 'footer.tpl.php' );
 		}
 		else
 		{
-			$this->registry->getObject('template')->buildFromTemplates( 'header.tpl.php', 'blog/empty.tpl.php', 'footer.tpl.php' );
+			
 		}
 	}
 	
