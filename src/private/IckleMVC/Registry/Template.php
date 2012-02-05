@@ -96,7 +96,68 @@ class Template {
 	    }
     }
     
-        /**
+    private function replaceCollectionTags( $tag, $collection )
+    {
+    	$block = '';
+    	$blockOld = $this->page->getBlock( $tag );
+    	if( $blockOld !== 0 )
+    	{
+    		$apd = $this->page->getAdditionalParsingData();
+    		$apdkeys = array_keys( $apd );
+    		// foreach record relating to the query...
+    		foreach( $collection as $tags )
+    		{
+    			$blockNew = $blockOld;
+    	
+    			// Do we have APD tags?
+    			if( in_array( $tag, $apdkeys ) )
+    			{
+    				// YES we do!
+    				$data = $tags->getData();
+    				foreach ($data as $ntag => $data)
+    				{
+    					$blockNew = str_replace("{" . $ntag . "}", $data, $blockNew);
+    					// Is this tag the one with extra parsing to be done?
+    					if( array_key_exists( $ntag, $apd[ $tag ] ) )
+    					{
+    						// YES it is
+    						$extra = $apd[ $tag ][$ntag];
+    						// does the tag equal the condition?
+    						if( $data == $extra['condition'] || ( is_array( $extra['condition'] ) && in_array( $data, $extra['condition'] ) )  )
+    						{
+    	
+    							// Yep! Replace the extratag with the data
+    							$blockNew = str_replace("{" . $extra['tag'] . "}", $extra['data'], $blockNew);
+    						}
+    						else
+    						{
+    							// remove the extra tag - it aint used!
+    							$blockNew = str_replace("{" . $extra['tag'] . "}", '', $blockNew);
+    						}
+    					}
+    				}
+    			}
+    			else
+    			{
+    				// create a new block of content with the results replaced into it
+    				$data = $tags->getData();
+    				foreach ($data as $ntag => $data)
+    				{
+    					$blockNew = str_replace("{" . $ntag . "}", $data, $blockNew);
+    				}
+    			}
+    	
+    			$block .= $blockNew;
+    		}
+    		$pageContent = $this->page->getContent();
+    		// remove the seperator in the template, cleaner HTML
+    		$newContent = str_replace( '<!-- START ' . $tag . ' -->' . $blockOld . '<!-- END ' . $tag . ' -->', $block, $pageContent );
+    		// update the page content
+    		$this->page->setContent( $newContent );
+    	}
+    }
+    
+    /**
      * Replace content on the page with data from the database
      * @param String $tag the tag defining the area of content
      * @param int $cacheId the queries ID in the query cache
@@ -253,6 +314,10 @@ class Template {
 				     // it is some cached data...replace tags from cached data
 				    $this->replaceDataTags( $tag, $data[1] );
 			    }
+	    	}
+	    	elseif( is_object( $data ) && in_array( 'IteratorAggregate', class_implements( $data ) ) )
+	    	{
+	    		$this->replaceCollectionTags( $tag, $data );
 	    	}
 	    	else
 	    	{	
