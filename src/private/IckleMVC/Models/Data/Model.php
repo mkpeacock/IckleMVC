@@ -56,7 +56,7 @@ abstract class Data_Model extends Data_Save{
 		}
 	}
 	
-	protected function buildFromArray( $array )
+	public function buildFromArray( $array )
 	{
 		foreach( $array as $field => $data )
 		{
