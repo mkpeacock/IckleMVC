@@ -68,7 +68,7 @@ class Content_Data_Contents extends Data_Collection{
 							 		AND t.ID=c.type 
 							 		AND t.reference='%s' 
 							 		AND ( c.deleted=%d OR c.deleted=%d ) %s
-							 ORDER BY c.`order` ASC";
+							 ORDER BY c.`order` ASC, v.publication_timestamp DESC";
 							 
 		return sprintf( $this->defaultSQL, $fields, $tables, $joins, $type, $deleted, $deletedOr, $conditions );
 	}
