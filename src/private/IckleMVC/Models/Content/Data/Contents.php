@@ -11,6 +11,8 @@ class Content_Data_Contents extends Data_Collection{
 	private $pickerFormatter = '%%m/%%d/%%Y';
 	private $timeFormatter = '%%H:%%i';
 	
+	protected $pagination;
+	
 	/**
 	 * Generate SQL statement
 	 * Primarilly used by child content models, so they don't need to know the table structure
@@ -82,6 +84,23 @@ class Content_Data_Contents extends Data_Collection{
 	{
 		$tor = array();
 		return $tor;
+	}
+	
+	protected function buildFromArray( $array, $initialObject )
+	{
+		foreach( $array as $record )
+		{
+			$object = clone $initialObject;
+			$object->buildFromArray( $record );
+			$this->add($object);
+		}
+		
+		
+	}
+	
+	public function getPagination()
+	{
+		return $this->pagination;
 	}
 	
 }
