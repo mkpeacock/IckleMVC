@@ -3,7 +3,7 @@ namespace IckleMVC\Models;
 /**
  * Content S model
  */
-class Content_Data_Contents extends SModel{
+class Content_Data_Contents extends Data_Collection{
 	
 	// time formats for query: escaped for sprintf
 	private $timestampFormatter = '%%D %%M %%Y %%H:%%i';
