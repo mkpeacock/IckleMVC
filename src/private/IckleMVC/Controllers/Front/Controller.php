@@ -70,7 +70,7 @@ public function process( $fallback=false )
 	$bit0 = $this->registry->getObject('urlprocessor')->getURLBit(0);
 	if( in_array( $bit0, $this->activeControllers ) && $fallback == false )
 	{
-		$controller = 'IckleMVC\Controllers\\' . ucfirst( strtolower( $controller ) ) . '_Controller';
+		$controller = 'IckleMVC\Controllers\\' . ucfirst( strtolower( $bit0 ) ) . '_Controller';
 		$controller = new $controller( $this->registry, true );
 	}
 	else
