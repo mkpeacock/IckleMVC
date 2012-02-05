@@ -114,7 +114,7 @@ class Pagination_Generator {
     	// limit!
     	$this->executedQuery = $temp_query . " LIMIT " . ( $this->offset * $this->limit ) . ", " . $this->limit;
     	
-    	$q = $this->db->executeQuery( $this->db, $this->executedQuery );
+    	$q = $this->db->executeQuery( $this->executedQuery );
     	while( $row = $this->db->getRows() )
     	{
     		$this->results[] = $row;
