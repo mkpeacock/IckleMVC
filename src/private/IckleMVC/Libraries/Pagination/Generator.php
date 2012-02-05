@@ -26,7 +26,7 @@ class Pagination_Generator {
 	/**
 	 * The results from the query
 	 */
-	private $results;
+	private $results=array();
 	
 	/**
 	 * The maximum number of results to display per page
