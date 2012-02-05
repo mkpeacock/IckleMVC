@@ -30,7 +30,7 @@ class Content_Data_Blog_Collection extends Content_Data_Contents{
 		$fields = " ";
 		$tables = " ";
 		$joins = "";
-		$conditions = " AND c.active=1 AND v.publication_timestamp >= '" . $curtime . "'" . $conditions;
+		$conditions = " AND c.active=1 AND v.publication_timestamp <= '" . $curtime . "'" . $conditions;
 			
 		return parent::generateSQL( $fields, $tables, $joins, $conditions, 'blog' );
 			
