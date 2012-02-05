@@ -1,11 +1,12 @@
 <?php
+namespace IckleMVC\Libraries;
 /**
  * Pagination class
  * Making pagination of records easy(ier)
  * @author Michael Peacock
  * @url www.michaelpeacock.co.uk
  */
-class Pagination {
+class Pagination_Generator {
 	
 	/**
 	 * MySQLi Connection
@@ -72,9 +73,9 @@ class Pagination {
 	 * @param mysqli $mysqli_link
 	 * @return void
 	 */
-    function __construct( $mysqli_link ) 
+    function __construct( $db ) 
     {
-		$this->db = $mysqli_link;
+		$this->db = $db;
 	}
     
     /**
@@ -89,18 +90,18 @@ class Pagination {
     	if( preg_match( '#SELECT DISTINCT((.+?)),#si', $temp_query ) > 0 )
     	{
     		// this is a distinct query, we really have to query them all :-(
-	    	$q = mysqli_query( $this->db, $temp_query );
-	    	$nums = mysqli_num_rows( $q );
+    		$this->db->executeQuery( $temp_query );
+    		$nums = $this->db->getNumRows();
 	    	$this->numRows = $nums;
     	}
     	else
     	{
     		// normal query, let's strip out everything before the "primary" FROM 
-    		$q = mysqli_query( $this->db, "SELECT COUNT(*) AS nums " . $this->excludePrimarySelects( $temp_query ) . " LIMIT 1" );
-    		if( mysqli_num_rows( $q ) == 1 )
+    		$q = $this->db->executeQuery( $this->db, "SELECT COUNT(*) AS nums " . $this->excludePrimarySelects( $temp_query ) . " LIMIT 1" );
+    		if( $this->db->getNumRows() == 1 )
     		{
     			// how many rows?
-    			$row = mysqli_fetch_array( $q, MYSQLI_ASSOC );
+    			$row = $this->db->getRows( $q, MYSQLI_ASSOC );
     			$this->numRows = $row['nums'];
     		}
     		else
@@ -113,8 +114,8 @@ class Pagination {
     	// limit!
     	$this->executedQuery = $temp_query . " LIMIT " . ( $this->offset * $this->limit ) . ", " . $this->limit;
     	
-    	$q = mysqli_query( $this->db, $this->executedQuery );
-    	while( $row = mysqli_fetch_array( $q, MYSQLI_ASSOC ) )
+    	$q = $this->db->executeQuery( $this->db, $this->executedQuery );
+    	while( $row = $this->db->getRows( $q, MYSQLI_ASSOC ) )
     	{
     		$this->results[] = $row;
     	}
@@ -129,7 +130,7 @@ class Pagination {
 		$this->isLast = ( ( $this->offset + 1 ) == $this->numPages ) ? true : false;
 		// current page
 		$this->currentPage = ( $this->numPages == 0 ) ? 0 : $this->offset +1;
-		$this->numRowsPage = mysqli_num_rows( $q );
+		$this->numRowsPage = $this->db->getNumRows();
 		
 		return ( $this->numRowsPage == 0 ) ? false : true;
     	
