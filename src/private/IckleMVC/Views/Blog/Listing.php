@@ -12,7 +12,8 @@ class Blog_Listing extends AbstractView{
 		}
 		else
 		{
-			
+			$this->registry->getObject('template')->getPage()->addTag( 'list', $collection );
+			$this->registry->getObject('template')->buildFromTemplates( 'header.tpl.php', 'blog/listing.tpl.php', 'footer.tpl.php' );
 		}
 	}
 	
