@@ -178,7 +178,7 @@ class Content_Data_Content extends Data_Model{
 	 */
 	public function isPublished()
 	{
-		return ( date('Y-m-d H:i:s') >= $this->publicationTimestamp && ( date('Y-m-d H:i:s') <= $this->expiryTimestamp || $this->expiryTimestamp == '0000-00-00 00:00:00' ) ) ? true : false;
+		return ( date('Y-m-d H:i:s') >= $this->publicationTimestamp && $this->active == true && ( date('Y-m-d H:i:s') <= $this->expiryTimestamp || $this->expiryTimestamp == '0000-00-00 00:00:00' ) ) ? true : false;
 	}
 	
 	/**
