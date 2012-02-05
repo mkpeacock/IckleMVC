@@ -1,29 +1,25 @@
 <?php
 namespace IckleMVC\Controllers;
+use IckleMVC\Views as view;
 /**
  * Blog controller for basic blog functionality
  * @author Michael Peacock
  */
 class Blog_Controller extends Controller{
 	
-	/**
-	 * Reference to the registry object
-	 * @var IckleRegistry
-	 */
-	private $registry;
-	
+
 	/**
 	 * Constructor
 	 * @param IckleRegistry $registry
 	 * @param bool $autoProcess
 	 * @return void
 	 */
-	public function __construct( IckleRegistry $registry, $autoProcess=true )
+	public function __construct( \IckleMVC\Registry\IckleRegistry $registry, $autoProcess=true )
 	{
 		$this->registry = $registry;
 		if( $autoProcess )
 		{
-			
+			$this->listEntries(0);
 		}
 	}
 	
@@ -36,7 +32,11 @@ class Blog_Controller extends Controller{
 	
 	private function listEntries( $page=0 )
 	{
+		$collection = new \IckleMVC\Models\Content_Data_Blog_Collection( $this->registry );
+		$pagination = $collection->buildPagination( $page );
 		
+		$view = new view\Blog_Listing( $this->registry );
+		$view->generate( $collection );
 	}
 	
 	private function viewEntry( $entry )
