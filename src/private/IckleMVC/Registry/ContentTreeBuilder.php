@@ -6,6 +6,7 @@ namespace IckleMVC\Registry;
  * @author Michael Peacock
  * @copyright IckleMVC
  * @package IckleMVC/Registry
+ * @todo refactor
  */
 class ContentTreeBuilder {
 	
