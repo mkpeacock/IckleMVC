@@ -101,7 +101,7 @@ class Pagination_Generator {
     		if( $this->db->getNumRows() == 1 )
     		{
     			// how many rows?
-    			$row = $this->db->getRows( $q, MYSQLI_ASSOC );
+    			$row = $this->db->getRows();
     			$this->numRows = $row['nums'];
     		}
     		else
@@ -115,7 +115,7 @@ class Pagination_Generator {
     	$this->executedQuery = $temp_query . " LIMIT " . ( $this->offset * $this->limit ) . ", " . $this->limit;
     	
     	$q = $this->db->executeQuery( $this->db, $this->executedQuery );
-    	while( $row = $this->db->getRows( $q, MYSQLI_ASSOC ) )
+    	while( $row = $this->db->getRows() )
     	{
     		$this->results[] = $row;
     	}
