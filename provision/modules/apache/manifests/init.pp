@@ -14,6 +14,12 @@ class apache {
 	   target => '/vagrant/src',
 	   require => Package['apache2']
 	}
+	
+	file { '/etc/apache2/sites-available/default':
+		source => '/vagrant/provision/modules/apache/files/default',
+		owner => 'root',
+		group => 'root'
+	}
 
   service { "apache2":
     ensure => running,

@@ -87,7 +87,7 @@ class php {
   exec { "reload-apache2":
       command => "/etc/init.d/apache2 reload",
       refreshonly => true,
-      require => [ Exec['apt-get update'], Package[apache2] ] 
+      require => [ Exec['apt-get update'], Package[apache2], File['/etc/apache2/sites-available/default'] ]
   }
   
   
