@@ -1,0 +1,12 @@
+This is a very rough and ready puppet provisioning manifest for the development virtual machine.
+It installs:
+- Apache
+-- mod_rewrite
+- PHP and all the trimmings
+- PEAR
+- PHPUnit
+- MySQL
+- Outbound mail
+
+The /src file within the host project is mapped to /var/www/src, so visiting 127.0.0.1:4567/src takes you to that directory
+Port forwarding for MySQL doesn't seem to be correctly in place, so connect with an SSH tunnel to the machine directly.
