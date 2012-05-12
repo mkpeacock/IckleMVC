@@ -5,7 +5,7 @@ namespace IckleMVC\Models;
  * @author Michael Peacock
  * @copyright IckleMVC Project
  */
-class Users_User extends Model{
+class Users_User extends Data_Model{
 	
 	/**
 	 * User ID
