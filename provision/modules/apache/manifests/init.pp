@@ -1,8 +1,14 @@
 class apache {
-  exec { 'apt-get update':
-    command => '/usr/bin/apt-get update',
-    require => Exec['preparenetworking']
-  }
+
+	package{ "python-software-properties":
+		ensure => present,
+		require => Exec['apt-get update']
+	}
+
+	exec { 'php5ppa':
+  		command => '/usr/bin/apt-get autoremove && /usr/bin/apt-add-repository ppa:brianmercer/php5 && /usr/bin/apt-get update',
+  		require => Package['python-software-properties']
+ 	 }
 
   package { "apache2":
     ensure => present,
