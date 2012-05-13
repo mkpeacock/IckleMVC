@@ -54,11 +54,6 @@ class php {
     require => [ Exec['apt-get update'], Package[apache2] ] 
   }
   
-  package { "php5-sqlite":
-    ensure => present, 
-    require => [ Exec['apt-get update'], Package[apache2] ] 
-  }
-  
   package { "php5-xmlrpc":
     ensure => present, 
     require => [ Exec['apt-get update'], Package[apache2] ] 
