@@ -21,6 +21,12 @@ class apache {
 	   require => Package['apache2']
 	}
 	
+	file { '/var/www/vendor':
+	   ensure => 'link',
+	   target => '/vagrant/vendor',
+	   require => Package['apache2']
+	}
+	
 	file { '/etc/apache2/sites-available/default':
 		source => '/vagrant/provision/modules/apache/files/default',
 		owner => 'root',
