@@ -31,6 +31,8 @@ class sudo{
 }
 import "dns"
 include dns
+import "composer"
+include composer
 import "apache"
 include apache
 import "modrewrite"
