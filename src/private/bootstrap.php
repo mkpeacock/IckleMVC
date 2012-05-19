@@ -35,6 +35,10 @@ class Bootstrap
         $classLoader->register();
         $classLoader = new SplClassLoader('IckleMVC\Views', FRAMEWORK_PATH );
         $classLoader->register();
+		$classLoader = new SplClassLoader('IckleMVC\Core', FRAMEWORK_PATH );
+        $classLoader->register();
+		$classLoader = new SplClassLoader('IckleMVC\Pages', FRAMEWORK_PATH );
+        $classLoader->register();
 		
 		$defaultRegistryObjects = array(
 											'db' => 'IckleMVC\Registry\Database_MySQL',
