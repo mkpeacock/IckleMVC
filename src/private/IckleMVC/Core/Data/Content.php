@@ -1,5 +1,5 @@
 <?php
-namespace IckleMVC\Models;
+namespace IckleMVC\Core\Data;
 
 /**
  * Root content type
@@ -7,7 +7,7 @@ namespace IckleMVC\Models;
  * @author Michael Peacock
  * @copyright IckleMVC Project, CentralApps Limited
  */
-class Content_Data_Content extends Data_Model{
+class Content extends Model{
 	
 	
 	protected $activeName = 'Active';
