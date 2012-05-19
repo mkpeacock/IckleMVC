@@ -4,11 +4,6 @@ namespace IckleMVC\Core\Data;
 abstract class Collection implements \IteratorAggregate, \Countable{
 	
 	protected $objects = array();
-
-    public function __construct( \IckleMVC\Registry\IckleRegistry $registry )
-    {
-    	$this->registry = $registry;
-    }
     
     public function getIterator()
     {
