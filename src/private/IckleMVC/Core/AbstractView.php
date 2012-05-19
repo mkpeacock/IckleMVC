@@ -9,6 +9,7 @@ abstract class AbstractView {
 	
 	public function __construct( \IckleMVC\Registry\IckleRegistry $registry, $applicationView=null)
 	{
+		// TODO: Inject template and front menu directly?
 		$this->registry = $registry;
 		$this->templateEngine = $this->registry->getObject('template');
 		$this->frontMenu = $this->registry->getObject('frontmenu');
