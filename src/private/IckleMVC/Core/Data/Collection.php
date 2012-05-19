@@ -19,8 +19,6 @@ abstract class Collection implements \IteratorAggregate, \Countable{
     {
     	$this->objects[] = $object;
     }
-    
-    abstract protected function buildFromSQL( $sql );
 	
 	public function pop()
 	{
