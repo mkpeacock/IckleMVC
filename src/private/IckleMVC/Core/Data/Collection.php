@@ -21,6 +21,18 @@ abstract class Collection implements \IteratorAggregate, \Countable{
     }
     
     abstract protected function buildFromSQL( $sql );
+	
+	public function pop()
+	{
+		if( count( $this->objects ) > 0 )
+		{
+			return $this->objects[0];
+		}
+		else
+		{
+			throw new \Exception("Empty collection: nothing to pop");		
+		}
+	}
     
 }
 ?>
