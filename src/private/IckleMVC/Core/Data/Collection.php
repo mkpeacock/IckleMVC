@@ -1,6 +1,6 @@
 <?php
 namespace IckleMVC\Core\Data;
-
+use IckleMVC\Core\Exception;
 abstract class Collection implements \IteratorAggregate, \Countable{
 	
 	protected $objects = array();
@@ -30,7 +30,7 @@ abstract class Collection implements \IteratorAggregate, \Countable{
 		}
 		else
 		{
-			throw new \Exception("Empty collection: nothing to pop");		
+			throw new EmptyCollectionException();		
 		}
 	}
     
