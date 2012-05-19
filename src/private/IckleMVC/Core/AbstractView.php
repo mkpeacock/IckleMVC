@@ -24,7 +24,7 @@ abstract class AbstractView {
 		{
 			$applicationView->preParseHook();
 		}
-		$this->templateEngine();
+		$this->templateEngine->parseOutput();
 		print $this->templateEngine->getPage()->getContentToPrint();
 		exit();
 	}

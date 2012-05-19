@@ -109,7 +109,7 @@ class Frontmenu {
 	 */
 	public function buildMenu( $currentPageID=0 )
 	{
-		$pages = new \IckleMVC\Models\Content_Data_Pages( $this->registry );
+		$pages = new \IckleMVC\Pages\Models\PageFactory( $this->registry );
 		$this->pages = $this->registry->getObject('contenttreebuilder')->setSQL( $pages->getSQL( " AND c.menu=1 AND c.active=1  " ) )->generateStructure( 'page' )->getStructure();
 		$treeplanter = new \IckleMVC\Libraries\Tree_Planter();
 		$treesurgeon = new \IckleMVC\Libraries\Tree_Surgeon();

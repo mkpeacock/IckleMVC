@@ -1,11 +1,12 @@
 <?php
-namespace IckleMVC\Models;
+namespace IckleMVC\Pages\Models;
+use IckleMVC\Core\Data;
 /**
  * Pagecontent model
  * 
  * @author Michael Peacock
  */
-class Content_Data_Page extends Content_Data_Content {
+class Page extends Data\Content_Model {
 	
 	private $templateFiles;
 	

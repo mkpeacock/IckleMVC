@@ -1,10 +1,10 @@
 <?php
-namespace IckleMVC\Models;
+namespace IckleMVC\Core\Data;
 /**
  * Data_Save class provides inheritable methods for using when saving to the database
  * @author Michael Peacock
  */
-abstract class Data_Save {
+abstract class Save {
 	
 	/**
 	 * Resanitize

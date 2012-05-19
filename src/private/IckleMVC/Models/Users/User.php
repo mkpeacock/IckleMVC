@@ -1,11 +1,12 @@
 <?php
 namespace IckleMVC\Models;
+use IckleMVC\Core\Data\Model;
 /**
  * Basic user class
  * @author Michael Peacock
  * @copyright IckleMVC Project
  */
-class Users_User extends Data_Model{
+class Users_User extends Model{
 	
 	/**
 	 * User ID

@@ -1,10 +1,10 @@
 <?php
-namespace IckleMVC\Models;
+namespace IckleMVC\Core\Data;
 /**
  * Abstract model class
  * @author Michael Peacock
  */
-abstract class Data_Model extends Data_Save{
+abstract class Model extends Save{
 	
 	/**
 	 * Indicates if the object is a valid representation, so for database backed objects, if the record was found

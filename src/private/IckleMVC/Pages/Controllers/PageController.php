@@ -1,11 +1,12 @@
 <?php
-namespace IckleMVC\Controllers;
-use IckleMVC\Views as view;
+namespace IckleMVC\Pages\Controllers;
+use IckleMVC\Pages\Views\View;
+use IckleMVC\Pages\Models\Page;
 /**
  * Page controller for basic front-end CMS functionality
  * @author Michael Peacock
  */
-class Page_Controller{
+class PageController{
 	
 	/**
 	 * Reference to the registry object
@@ -25,12 +26,12 @@ class Page_Controller{
 		if( $autoProcess )
 		{
 			$pagePath = $this->registry->getObject('db')->sanitizeData( $this->registry->getObject('urlprocessor')->getURLPath() );
-			$page = new \IckleMVC\Models\Content_Data_Page( $this->registry, 0, $pagePath, ( $pagePath == '' ) ? true : false );
+			$page = new Page( $this->registry, 0, $pagePath, ( $pagePath == '' ) ? true : false );
 			if( $page->isPublished() )
 			{
 				if( ! $page->requiresAuthentication() || ( $page->requiresAuthentication() && $this->registry->getObject('autentication')->getUser()->isLoggedIn() ) )
 				{
-					$view = new view\Page_View( $this->registry );
+					$view = new View( $this->registry );
 					$view->generate( $page );
 				}
 				else

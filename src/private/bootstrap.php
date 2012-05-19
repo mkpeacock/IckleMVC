@@ -116,13 +116,12 @@ class Bootstrap
 		require_once( FRAMEWORK_PATH . 'config.php' );
 		$this->registry->getObject('db')->newConnection( $db_credentials['default_host'], $db_credentials['default_user'], $db_credentials['default_password'], $db_credentials['default_database'] );
 		
-		$settings = new \IckleMVC\Models\Settings_Data_Collection( $this->registry );
-		$settings->buildCoreSettings();
+		$settings = new \IckleMVC\Core\Data\Settings\SettingsFactory( $this->registry );
+		$settings = $settings->buildCoreSettings();
 		foreach( $settings as $setting )
 		{
 			$this->registry->storeSetting( $setting->getKey(), $setting->getData() );
 		}
-		
 		$this->registry->getObject('authentication')->authenticationCheck();
 	}
 	

@@ -94,7 +94,7 @@ public function process( $fallback=false )
 		}
 		if( ! $match )
 		{
-			$controller = new Page_Controller( $this->registry, true );
+			$controller = new \IckleMVC\Pages\Controllers\PageController( $this->registry, true );
 		}
 	}
 }

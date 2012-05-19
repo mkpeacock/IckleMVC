@@ -7,7 +7,7 @@ namespace IckleMVC\Core\Data;
  * @author Michael Peacock
  * @copyright IckleMVC Project, CentralApps Limited
  */
-class Content extends Model{
+class Content_Model extends Model{
 	
 	
 	protected $activeName = 'Active';
