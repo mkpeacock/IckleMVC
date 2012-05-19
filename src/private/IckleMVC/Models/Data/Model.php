@@ -91,7 +91,10 @@ abstract class Data_Model extends Data_Save{
 		else
 		{
 			// insert
-			$this->registry->getObject('db')->insertRecords( $this->table, $this->_data );
+			$this->registry->getObject('db')->insertRecord( $this->table, $this->_data );
+			// TODO: fix this, it will only work for tables with a key field which is an auto increment - good for now, not ideal
+			$setter = 'set' . ucfirst( $this->fieldNameToProperty( $pkf ) );
+			$this->$setter( $this->registry->getObject('db')->getLastInsertID() );
 		}
 	}
 	
@@ -115,6 +118,7 @@ abstract class Data_Model extends Data_Save{
 	}
 	
 	/**
+	 * TODO: is this deprecated now?
 	 * Overloading isset
 	 * @param String $name the name of the field
 	 * @return bool
@@ -140,11 +144,11 @@ abstract class Data_Model extends Data_Save{
 			switch( $initial )
 			{
 				case 'set':
-					$this->$remainder = $arguments[0];
+					$this->_data[ $remainder ] = $arguments[0];
 					return $this;
 					break;
 				case 'get':
-					return $this->$remainder;
+					return $this->_data[ $remainder ];
 					break;
 			} 
 		}
@@ -219,5 +223,3 @@ abstract class Data_Model extends Data_Save{
 	
 	
 }
-
-?>
